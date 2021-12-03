@@ -23,3 +23,9 @@ func BenchmarkPartA(b *testing.B) {
 		PartA(testInput)
 	}
 }
+
+func BenchmarkPartB(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PartB(testInput)
+	}
+}
