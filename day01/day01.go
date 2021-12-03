@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"strings"
+	"github.com/strategicpause/adventofcode2021/common"
 )
 
 const (
@@ -34,7 +35,7 @@ func PartA(input string) int {
 		i := strings.IndexByte(input, '\n')
 		n := 0
 		if i == -1 {
-			n = Atoi(input)
+			n = common.Atoi(input)
 			input = ""
 		} else {
 			n = Atoi(input[0:i])
@@ -55,36 +56,19 @@ func PartB(input string) int {
 		i := strings.IndexByte(input, '\n')
 		n := 0
 		if i == -1 {
-			n = Atoi(input)
+			n = common.Atoi(input)
 			input = ""
 		} else {
-			n = Atoi(input[0:i])
+			n = common.Atoi(input[0:i])
 			input = input[i+1:]
 		}
 		window = append(window, n)
 		if len(window) > 3 {
-			if Sum(window[0:3]) < Sum(window[1:4]) {
+			if common.Sum(window[0:3]) < common.Sum(window[1:4]) {
 				increase++
 			}
 			window = window[1:4]
 		}
 	}
 	return increase
-}
-
-func Atoi(str string) int {
-	n := 0
-	l := len(str)
-	for i := 0; i < l; i++ {
-		n = n * 10 + int(str[i] - '0')
-	}
-	return n
-}
-
-func Sum(window []int) int {
-	sum := 0
-	for _, n := range window {
-		sum += n
-	}
-	return sum
 }
