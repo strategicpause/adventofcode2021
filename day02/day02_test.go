@@ -18,8 +18,18 @@ func TestPartA(t *testing.T) {
 	assert.Equal(t, 150, PartA(testInput))
 }
 
+func TestPartB(t *testing.T) {
+	assert.Equal(t, 900, PartB(testInput))
+}
+
 func BenchmarkPartA(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		PartA(testInput)
+	}
+}
+
+func BenchmarkPartB(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PartB(testInput)
 	}
 }

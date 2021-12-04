@@ -15,6 +15,8 @@ func main() {
 	}
 	answer := PartA(input)
 	fmt.Println(answer)
+	answer = PartB(input)
+	fmt.Println(answer)
 }
 
 func ReadInput() (string, error) {
@@ -40,6 +42,33 @@ func PartA(input string) int {
 			depth += value
 		case "up":
 			depth -= value
+		default:
+			fmt.Println(command)
+		}
+	}
+	return depth * horizontalPos
+}
+
+func PartB(input string) int {
+	lines := strings.Split(input, "\n")
+	aim := 0
+	depth := 0
+	horizontalPos := 0
+	for _, line := range lines {
+		if line == "" {
+			continue
+		}
+		i := strings.IndexByte(line, ' ')
+		command := line[0:i]
+		value := common.Atoi(line[i + 1:])
+		switch command {
+		case "forward":
+			horizontalPos += value
+			depth -= aim * value
+		case "down":
+			aim -= value
+		case "up":
+			aim += value
 		default:
 			fmt.Println(command)
 		}
