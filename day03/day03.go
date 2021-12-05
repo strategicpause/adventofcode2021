@@ -3,12 +3,10 @@ package main
 import (
 	"fmt"
 	"github.com/strategicpause/adventofcode2021/common"
-	"strconv"
 	"strings"
 )
 
 const (
-
 	MaxLen = 12
 )
 
@@ -60,14 +58,19 @@ func PartA(input string) int {
 	return gamma * epsilon
 }
 
+type NewRatings [MaxLen]string
+
 func PartB(input string) int {
 	ratings := strings.Split(input, "\n")
 	numBits := len(ratings[0])
 	oRatings := ratings
 	co2Ratings := ratings
+	// Pre-Allocate buffer of memory for temporarily storing the new ratings
+	var newORatings NewRatings
+	var newCo2Ratings NewRatings
 	for i := 0; i < numBits; i++ {
-		oRatings = FilterRatings(oRatings, i, OxygenFilterFunc)
-		co2Ratings = FilterRatings(co2Ratings, i, CarbonDioxideFilterFunc)
+		oRatings = FilterRatings(oRatings, i, &newORatings, OxygenFilterFunc)
+		co2Ratings = FilterRatings(co2Ratings, i, &newCo2Ratings, CarbonDioxideFilterFunc)
 	}
 	return BinStr2Int(oRatings[0]) * BinStr2Int(co2Ratings[0])
 }
@@ -98,13 +101,12 @@ func CalcBitsAtIndex(ratings []string, index int) int {
 	return numBits
 }
 
-func FilterRatings(ratings []string, index int, filterFunc func(int, int) byte) []string {
+func FilterRatings(ratings []string, index int, newRatings *NewRatings, filterFunc func(int, int) byte) []string {
 	if len(ratings) == 1 {
 		return ratings
 	}
 	numBits := CalcBitsAtIndex(ratings, index)
 	numLines := len(ratings)
-	var newRatings [MaxLen]string
 	i := 0
 	filterValue := filterFunc(numBits, numLines)
 	for _, rating := range ratings {
@@ -117,6 +119,12 @@ func FilterRatings(ratings []string, index int, filterFunc func(int, int) byte) 
 }
 
 func BinStr2Int(binStr string) int {
-	i, _ := strconv.ParseInt(binStr, 2, 64)
-	return int(i)
+	n := 0
+	for _, c := range binStr {
+		n = n << 1
+		if c == '1' {
+			n |= 1
+		}
+	}
+	return n
 }
