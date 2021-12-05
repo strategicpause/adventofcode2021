@@ -1,5 +1,14 @@
 package common
 
+import (
+	"io/ioutil"
+)
+
+func ReadInput() (string, error) {
+	content, err := ioutil.ReadFile("input.txt")
+	return string(content), err
+}
+
 func Atoi(str string) int {
 	n := 0
 	l := len(str)
