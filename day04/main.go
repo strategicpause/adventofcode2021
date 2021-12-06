@@ -14,6 +14,7 @@ type Board struct {
 	cols [BoardSize]int
 	rows [BoardSize]int
 	spaces map[string]*Space
+	winner bool
 }
 
 func NewBoard(input string) *Board {
@@ -56,11 +57,13 @@ func (b *Board) MarkSpace(value string) bool {
 	if space, ok := b.spaces[value]; ok {
 		space.marked = true
 		b.rows[space.row]++
-		if b.rows[space.row] == BoardSize {
+		if !b.winner && b.rows[space.row] == BoardSize {
+			b.winner = true
 			return true
 		}
 		b.cols[space.col]++
-		if b.cols[space.col] == BoardSize {
+		if !b.winner && b.cols[space.col] == BoardSize {
+			b.winner = true
 			return true
 		}
 	}
