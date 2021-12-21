@@ -25,3 +25,17 @@ func Sum(window []int) int {
 	}
 	return sum
 }
+
+func Abs(n int) int {
+	if n < 0 {
+		return -1 * n
+	}
+	return n
+}
+
+func Max(n, m int) int {
+	if n > m {
+		return n
+	}
+	return m
+}
