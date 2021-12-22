@@ -6,14 +6,14 @@ import (
 	"strings"
 )
 
-var testInput = strings.TrimSpace(``)
+var testInput = strings.TrimSpace(`3,4,3,1,2`)
 
 func TestPartA(t *testing.T) {
-	assert.Equal(t, 0, PartA(testInput))
+	assert.Equal(t, 5934, PartA(testInput))
 }
 
 func TestPartB(t *testing.T) {
-	assert.Equal(t, 0, PartB(testInput))
+	assert.Equal(t, 26984457539, PartB(testInput))
 }
 
 func BenchmarkPartA(b *testing.B) {

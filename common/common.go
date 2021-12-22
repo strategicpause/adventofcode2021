@@ -2,6 +2,7 @@ package common
 
 import (
 	"io/ioutil"
+	"strings"
 )
 
 func ReadInput() (string, error) {
@@ -16,6 +17,27 @@ func Atoi(str string) int {
 		n = n * 10 + int(str[i] - '0')
 	}
 	return n
+}
+
+func SplitAtoi(str string, splitChar byte) []int {
+	var nums []int
+	SplitItr(str, splitChar, func(s string) {
+		nums = append(nums, Atoi(s))
+	})
+	return nums
+}
+
+func SplitItr(str string, splitChar byte, f func(string)) {
+	for str != "" {
+		i := strings.IndexByte(str, splitChar)
+		if i == -1 {
+			f(str)
+			str = ""
+		} else {
+			f(str[0:i])
+			str = str[i+1:]
+		}
+	}
 }
 
 func Sum(window []int) int {
