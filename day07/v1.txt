@@ -1,0 +1,16 @@
+goos: darwin
+goarch: amd64
+pkg: github.com/strategicpause/adventofcode2021/day07
+cpu: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+BenchmarkPartA-12    	 3115863	       371.4 ns/op
+BenchmarkPartA-12    	 3236480	       370.0 ns/op
+BenchmarkPartA-12    	 3244173	       371.1 ns/op
+BenchmarkPartA-12    	 3256771	       366.2 ns/op
+BenchmarkPartA-12    	 3280111	       369.3 ns/op
+BenchmarkPartB-12    	 2404902	       498.1 ns/op
+BenchmarkPartB-12    	 2400913	       498.3 ns/op
+BenchmarkPartB-12    	 2408613	       498.5 ns/op
+BenchmarkPartB-12    	 2411504	       499.7 ns/op
+BenchmarkPartB-12    	 2417692	       499.3 ns/op
+PASS
+ok  	github.com/strategicpause/adventofcode2021/day07	17.157s

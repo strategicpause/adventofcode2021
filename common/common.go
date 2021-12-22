@@ -2,6 +2,7 @@ package common
 
 import (
 	"io/ioutil"
+	"math"
 	"strings"
 )
 
@@ -60,4 +61,22 @@ func Max(n, m int) int {
 		return n
 	}
 	return m
+}
+
+func GetLowHigh(nums []int) (int, int) {
+	high := 0
+	low := math.MaxInt
+	for _, num := range nums {
+		if num > high {
+			high = num
+		} else if num < low {
+			low = num
+		}
+	}
+	return low, high
+}
+
+// Sumation returns the sum of numbers from 1 to n (inclusive).
+func Summation(n int) int {
+	return int(float64(n) / 2.0 * float64(1 + n))
 }
