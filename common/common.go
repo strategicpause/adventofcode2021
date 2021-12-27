@@ -15,9 +15,13 @@ func Atoi(str string) int {
 	n := 0
 	l := len(str)
 	for i := 0; i < l; i++ {
-		n = n * 10 + int(str[i] - '0')
+		n = n * 10 + CharAtoi(str[i])
 	}
 	return n
+}
+
+func CharAtoi(c byte) int {
+	return int(c - '0')
 }
 
 // SplitAtoi will split the given string by the given split character.
@@ -28,6 +32,10 @@ func SplitAtoi(str string, splitChar byte) []int {
 		nums = append(nums, Atoi(s))
 	})
 	return nums
+}
+
+func SplitLines(str string, f func(string)) {
+	SplitItr(str, '\n', f)
 }
 
 // SplitItr will split the given string by the given split character.
