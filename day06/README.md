@@ -1,4 +1,4 @@
-=== Part A ===
+### Part A
 
 Unoptimized solution. For this solution I created a new slice at the start of each day and updated that. At the end of the day I would set the fish slice to the new slice and repeat the process.
 
@@ -20,7 +20,7 @@ PartB-12  0.35ns ± 0%
 
 It looks like a majority of the time being speint is now in the GC. This is likely from having to grow the slice multiple times each day.
 
-=== Part B ===
+### Part B
 My "optimized" solution didn't cut it for part B. Instead I took an approach where I used an array to track the number of fishes by day. Each iteration would involve moving the value from one day to the next day, and special-casing day 0. I pre-allocated two arrays that I could use to keep track of the current state of the fish population and the next state of the fish of the fish population. This had the nice benefit of not having to allocate addiitonal memory while running.
 
 ~~~~
