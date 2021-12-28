@@ -3,6 +3,7 @@ package common
 import (
 	"io/ioutil"
 	"math"
+	"sort"
 	"strings"
 )
 
@@ -107,4 +108,9 @@ func NumCommon(s1, s2 string) int {
 		}
 	}
 	return common
+}
+
+func MiddleElement(n []int) int {
+	sort.Ints(n)
+	return n[len(n)/2]
 }
